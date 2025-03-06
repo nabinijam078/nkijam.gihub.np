@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORBEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 15px;
+            background-color: #E5E4E2;
+        }
+        h1 {
+            background-color: blue;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+        h2 {
+            background-color: green;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .dimension {
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        .dimension.rotated {
+            transform: rotate(-90deg);
+            transform-origin: left top;
+        }
+        input {
+            padding: 5px;
+            width: 100px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">WELCOME TO MY PORTFOLIO</h1>
+    <a href="Home.html"><b>HOME</b></a>
+    <a href="My background.html"><b>MY BACKGROUND</b></a>
+    <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+    <a href="Others.html"><b>OTHERS</b></a>
+    <a href="Downloads.html"><b>DOWNLOADS</b></a>
+    <a href="images.html"><b>IMAGES</b></a>
+    <a href="Contacts.html"><b>CONTACTS</b></a>
+
+    <div class="container">
+        <!-- Inputs on the left -->
+        <div class="inputs">
+            <h2>CORBEL</h2>
+            <div class="input-group">
+                <label for="fck">Concrete grade, fck (N/mm<sup>2</sup>):</label>
+                <input type="number" id="fck">
+            </div>
+            <div class="input-group">
+                <label for="fy">Steel grade, fy (N/mm<sup>2</sup>):</label>
+                <input type="number" id="fy">
+            </div>
+            <div class="input-group">
+                <label for="c">Effective cover, c (mm):</label>
+                <input type="number" id="c">
+            </div>
+            <div class="input-group">
+                <label for="a">Distance from column, a (mm):</label>
+                <input type="number" id="a">
+            </div>
+            <div class="input-group">
+                <label for="V">Load at corbel, V (kN):</label>
+                <input type="number" id="V">
+            </div>
+            <div class="input-group">
+                <label for="d">Depth of corbel, d (mm):</label>
+                <input type="number" id="d">
+            </div>
+            <div class="input-group">
+                <label for="D">Overall depth, D (mm):</label>
+                <input type="number" id="D">
+            </div>
+            <div class="input-group">
+                <label for="b">Column width, b (mm):</label>
+                <input type="number" id="b">
+            </div>
+            <div class="input-group">
+                <label for="Phit">Diameter of tension reinforcement, φt (mm):</label>
+                <input type="number" id="Phit">
+            </div>
+            <div class="input-group">
+                <label for="Phic">Diameter of compression reinforcement, φc (mm):</label>
+                <input type="number" id="Phic">
+            </div>
+            <button onclick="Design()">Design</button>
+        </div>
+
+        <!-- Image on the right -->
+        <div class="image-container">
+            <img src="corbel_drawing.png" alt="Corbel Drawing" style="width: 400px; height: 400px;">
+            <div id="a-label" class="dimension" style="top: 60px; left: 140px;"></div>
+            <div id="V-label" class="dimension" style="top: 20px; left: 200px;"></div>
+            <div id="d-label" class="dimension rotated" style="top: 180px; left: 260px;"></div>
+            <div id="D-label" class="dimension rotated" style="top: 250px; left: 310px;"></div>
+        </div>
+    </div>
+
+    <!-- Result Display -->
+    <h2>DESIGN RESULTS</h2>
+	<p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
+    <p>Compressive force, Fc: <span id="Fc"></span> kN</p>
+    <p>Tensile force, Ft: <span id="Ft"></span> kN</p>
+    <p>Area of tensile reinforcement (Ast): <span id="Ast"></span>mm²</p>
+    <p>Number of tensile reinforcement (nt): <span id="nt"></span></p>
+    <p>Area of compression reinforcement (Asc): <span id="Asc"></span>mm²</p>
+    <p>Number of compression reinforcement (nc): <span id="nc"></span></p>
+    <p><u>CHECK FOR SHEAR CAPACITY</u></p>
+    <p>Shear capacity of corbel: <span id="scc"></span> kN</p>
+    <p>Check for Shear capacity of corbel: <span id="check"></span></p>
+
+    <script>
+        // Modulus of elasticity for steel
+        const Es = 2e5; // in MPa
+
+        function Design() {
+            const fck = parseFloat(document.getElementById('fck').value) || 0;
+            const fy = parseFloat(document.getElementById('fy').value) || 0;
+            const c = parseFloat(document.getElementById('c').value) || 0;
+            const a = parseFloat(document.getElementById('a').value) || 0;
+            const V = parseFloat(document.getElementById('V').value) || 0;
+            const d = parseFloat(document.getElementById('d').value) || 0;
+            const D = parseFloat(document.getElementById('D').value) || 0;
+            const b = parseFloat(document.getElementById('b').value) || 0;
+            const Phit = parseFloat(document.getElementById('Phit').value) || 0;
+            const Phic = parseFloat(document.getElementById('Phic').value) || 0;
+
+            // Update dimension labels
+            document.getElementById('a-label').textContent = `a = ${a}mm`;
+            document.getElementById('V-label').textContent = `V = ${V}kN`;
+            document.getElementById('d-label').textContent = `d = ${d}mm`;
+            document.getElementById('D-label').textContent = `D = ${D}mm`;
+
+            // Input validation
+            if (fck <= 0 || fy <= 0 || c <= 0 || a <= 0 || V <= 0 || d <= 0 || D <= 0 || b <= 0 || Phit <= 0 || Phic <= 0) {
+                alert("All input values must be positive numbers.");
+                return;
+            }
+
+            let vc;
+            if (fck == 15) vc = 2.5;
+            else if (fck == 20) vc = 2.8;
+            else if (fck == 25) vc = 3.1;
+            else if (fck == 30) vc = 3.5;
+            else if (fck == 35) vc = 3.7;
+            else vc = 4.0;
+
+            // Calculation
+            const de1 = V * 1000 / (vc * b);
+            const DT = de1 + c;
+            const de = DT > D ? DT - c : D - c;
+            const k = V * 1000 / (0.88 * fck * b * de);
+            const r = a / de;
+            const z = ((r / (r + k)) + Math.sqrt(Math.pow(r / (r + k), 2) - 4 * (k / (r + k)) * Math.pow(r, 2))) / 2 * de;
+            const x = (de - z) / 0.45;
+            const strain = 0.0035 * (de - x) / x;
+
+            // Calculate stress based on fy and strain
+            const stress = getStress(fy, strain);
+
+            // Separate calculations for Fc and Ft
+            const Fc = V * Math.sqrt(Math.pow(a, 2) + Math.pow(z, 2)) / z; // Compressive force
+            const Ft = (V * a) / z; // Tensile force
+
+            const Ast = Math.max(Ft * 1000 / stress, 0.4 / 100 * b * de);
+            const Ast1 = 3.1416 * Math.pow(Phit, 2) / 4; // Area of one tension bar
+            const nt = Math.ceil(Ast / Ast1); // Number of tension bars
+            const Asc = Ast / 2; // Area of compression reinforcement
+            const Asc1 = 3.1416 * Math.pow(Phic, 2) / 4; // Area of one compression bar
+            const nc = Math.ceil(Asc / Asc1); // Number of compression bars
+
+            const beta = Math.max(0.8 * fck / (6.89 * (Ast / (b * de)) * 100), 1);
+            const tau_c = 0.85 * Math.sqrt(0.8 * fck) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
+            const taum = tau_c * (2 * de / a);
+            const sc = taum * b * de / 1000; // Shear capacity from concrete
+            const ss = 0.87 * fy * nc * Asc1 * 2 / 1000; // Shear capacity from steel
+            const scc = sc + ss; // Total shear capacity
+
+            let check;
+            if (scc > Fc) {
+                check = "OK";
+            } else {
+                check = "NOT OK";
+            }
+
+            // Display results
+            document.getElementById('Fc').textContent = Fc.toFixed(2);
+            document.getElementById('Ft').textContent = Ft.toFixed(2);
+            document.getElementById('Ast').textContent = Ast.toFixed(2);
+            document.getElementById('nt').textContent = nt.toFixed(0);
+            document.getElementById('Asc').textContent = Asc.toFixed(2);
+            document.getElementById('nc').textContent = nc.toFixed(0);
+            document.getElementById('scc').textContent = scc.toFixed(0);
+            document.getElementById('check').textContent = check;
+        }
+
+        function getStress(fy, strain) {
+            let stress;
+
+            if (fy === 250) {
+                if (strain <= 0.00109) {
+                    stress = strain * Es; // Linear elastic region
+                } else {
+                    stress = 0.87 * fy; // Maximum stress
+                }
+            } else if (fy === 415) {
+                if (strain < 0.00144) {
+                    stress = strain * Es; // Linear elastic region
+                } else if (strain <= 0.0038) {
+                    stress = interpolateStress(fy, strain); // Interpolate for intermediate strains
+                } else {
+                    stress = 0.87 * fy; // Maximum stress
+                }
+            } else if (fy === 500) {
+                if (strain < 0.00174) {
+                    stress = strain * Es; // Linear elastic region
+                } else if (strain <= 0.00417) {
+                    stress = interpolateStress(fy, strain); // Interpolate for intermediate strains
+                } else {
+                    stress = 0.87 * fy; // Maximum stress
+                }
+            } else {
+                throw new Error("Unsupported fy value");
+            }
+
+            return stress;
+        }
+
+        function interpolateStress(fy, strain) {
+            const table = {
+                415: [
+                    { strain: 0.00144, stress: 288.7 }, { strain: 0.00163, stress: 306.7 },
+                    { strain: 0.00192, stress: 324.8 }, { strain: 0.00241, stress: 342.8 },
+                    { strain: 0.00276, stress: 351.8 }, { strain: 0.00380, stress: 360.9 }
+                ],
+                500: [
+                    { strain: 0.00174, stress: 347.8 }, { strain: 0.00195, stress: 369.6 },
+                    { strain: 0.00226, stress: 391.3 }, { strain: 0.00277, stress: 413 },
+                    { strain: 0.00312, stress: 423.9 }, { strain: 0.00417, stress: 434.8 }
+                ]
+            };
+
+            if (!table[fy]) {
+                throw new Error("Unsupported fy value");
+            }
+
+            const data = table[fy];
+
+            // Find two closest points for interpolation
+            let s1, s2;
+            for (let i = 0; i < data.length - 1; i++) {
+                if (strain >= data[i].strain && strain <= data[i + 1].strain) {
+                    s1 = data[i];
+                    s2 = data[i + 1];
+                    break;
+                }
+            }
+
+            if (!s1 || !s2) {
+                return 0.87 * fy; // If out of range, return max stress
+            }
+
+            return s1.stress + ((strain - s1.strain) / (s2.strain - s1.strain)) * (s2.stress - s1.stress);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beam Section Design as per IS 456:2000</title>
+    <style>
+	 h1{ background-color: blue;text-align: center;color:white; font-family: Arial;
+        font-size: 25px;
+      }
+      p{font-family:Arial; font-size:15px; text-align:justify}
+      a{background-color: CYAN;font-family: Arial;font-size:15px;color:black}
+
+      footer {position: fixed;font-family: Arial;font-size:8px;
+  	left: 0;
+  	bottom: 0;
+  	width: 100%;
+  	background-color: blue;
+  	color: white;
+  	text-align: Left;
+	}
+
+      
+      h2{ background-color: green;text-align: center;color:white; font-family: Arial;
+        font-size: 20px;}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body style="background-color:#E5E4E2;">
+	<h1 class="title">WELCOME TO MY PORTFOLIO </h1>
+      <a href="Home.html"><b>HOME</b></a>
+      <a href="My background.html"><b> MY BACKGROUND</b></a>
+      <a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
+	<a href="Others.html"><b> OTHERS</b></a>
+      <a href="Downloads.html"><b> DOWNLOADS</b></a>
+	<a href="images.html"><b> IMAGES</b></a>
+      <a href="Contacts.html"><b> CONTACTS</b></a>
+      <p> </p>
+
+
+<div class="container">
+    <h2>BEAM DESIGN AS PER IS 456:2000</h2>
+    <form id="beamSectionForm">
+        <div class="input-group">
+            <label for="width">Width of Beam (b in mm):</label>
+            <input type="number" id="width" required>
+        </div>
+        <div class="input-group">
+            <label for="depth">Overall Depth of Beam (d in mm):</label>
+            <input type="number" id="depth" required>
+        </div>
+        <div class="input-group">
+            <label for="cover">Effective cover of beam (c in mm):</label>
+            <input type="number" id="cover" required>
+        </div>
+        <div class="input-group">
+            <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
+            <input type="number" id="dm" required>
+        </div>
+        <div class="input-group">
+            <label for="ds">Diameter of Shear Reinforcement (ds in mm):</label>
+            <input type="number" id="ds" required>
+        </div>
+        <div class="input-group">
+            <label for="nl">Number of legs of shear reinforcement (nl):</label>
+            <input type="number" id="nl" required>
+        </div>
+        <div class="input-group">
+            <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
+            <input type="number" id="fck" step="0.1" required>
+        </div>
+        <div class="input-group">
+            <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
+            <input type="number" id="fy" step="0.1" required>
+        </div>
+        <div class="input-group">
+            <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
+            <input type="number" id="moment" step="0.01" required>
+        </div>
+        <div class="input-group">
+            <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
+            <input type="number" id="shear" step="0.01" required>
+        </div>
+        <button type="button" onclick="calculateBeamSection()">Design Section</button>
+    </form>
+
+    <div class="result" id="result">
+        <h2>Design Results</h2>
+        <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
+        <p><strong>Number of Tensile steel(n<sub>s</sub>):</strong> <span id="n1"></span></p>
+        <p><strong>Area of Compression Steel (A<sub>sc</sub>):</strong> <span id="compSteelArea"></span> mm²</p>
+        <p><strong>Number of Compression steel(n<sub>c</sub>):</strong> <span id="n2"></span></p>
+        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span>mm</p>
+        <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
+    </div>
+</div>
+
+<script>
+    function calculateBeamSection() {
+        // Input values
+        const width = parseFloat(document.getElementById('width').value); // b in mm
+        const depth = parseFloat(document.getElementById('depth').value); // D in mm
+        const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+        const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
+        const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+        const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
+        const ds = parseFloat(document.getElementById('ds').value); // Diameter of Shear reinforcement in mm
+        const nl = parseFloat(document.getElementById('nl').value); // Number of legs of shear reinforcement
+        const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
+        const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
+
+        // Convert moment to Nmm and shear to N
+        const Mu = moment * 1e6; // kNm to Nmm
+        const Vu = shear * 1e3; // kN to N
+
+        // Design parameters
+        const fck_design = fck; // Design concrete strength
+        const fy_design = fy; // Design steel strength
+        const depth_e = depth - cover; // Effective depth
+        const Es = 2e5; // Modulus of elasticity of steel
+
+        // Calculate limiting moment (Mu_lim)
+        const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
+        const Xu_max = k * depth_e; // For Fe 415 steel
+        const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+
+        // Check for singly or doubly reinforced section
+        let Ast, Asc, sectionType;
+        if (Mu <= Mu_lim) {
+            // Singly reinforced section
+            Ast = (1- (1 - Math.sqrt(1 - (4.6 * Mu) / (fck_design * width * depth_e * depth_e))))*(fck_design/(2*fy_design))*width*depth_e;
+            Asc = 0; // No compression steel
+            sectionType = "Singly Reinforced Section";
+        } else {
+            // Doubly reinforced section
+            const ratio = cover / (depth - cover);
+            let fsc;
+            if (fy === 250) {
+                fsc = 217; // For Fe 250
+            } else if (fy === 415) {
+                fsc = 9333 * Math.pow(ratio, 3) - 4600 * Math.pow(ratio, 2) + 486.6 * ratio + 341; // Your original relation
+            } else {
+                fsc = -1300 * Math.pow(ratio, 2) - 33 * ratio + 428.7; // Your original relation
+            }
+
+            const fcc = 0.416 * fck_design; // Stress in concrete at compression steel level
+            const Mu2 = Mu - Mu_lim; // Additional moment to be resisted by compression steel
+            Asc = Mu2 / (0.87 * (fsc - fcc) * (depth_e - cover)); // Compression steel area
+            const Ast1 = (0.36 * fck_design * width * Xu_max) / (0.87 * fy_design); // Tensile steel for balanced section
+            const Ast2 = (fsc * Asc) / (0.87 * fy_design); // Additional tensile steel for doubly reinforced section
+            Ast = Ast1 + Ast2; // Total tensile steel area
+            sectionType = "Doubly Reinforced Section";
+        }
+
+        // Calculate number of steel bars
+        const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
+        const n1 = Math.max(Math.ceil(Ast / A1),2); // Number of tensile steel bars
+        const n2 = Math.max(Math.ceil(Asc / A1),2); // Number of compression steel bars
+
+        // Shear reinforcement calculation
+        const A3 = (Math.PI * Math.pow(ds, 2) / 4) * nl; // Area of shear reinforcement legs
+        const tau_v = Vu / (width * depth_e); // Shear stress
+        const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100),1); // Your original relation
+        const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
+        const tau_c_max = 0.25 * Math.sqrt(fck_design); // Maximum shear stress as per IS 456
+
+        let shearReinforcement;
+        if (tau_v <= tau_c) {
+            shearReinforcement = (0.87 * fy_design * A3) / (0.4 * width); // Your original formula
+        } else if (tau_v <= tau_c_max) {
+            shearReinforcement = (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth).toFixed(1); // Your original formula
+        } else {
+            shearReinforcement = "Shear reinforcement required. Design shear links.";
+        }
+
+        // Display results
+        document.getElementById('steelArea').textContent = Ast.toFixed(1);
+        document.getElementById('n1').textContent = n1;
+        document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
+        document.getElementById('n2').textContent = n2;
+        document.getElementById('shearReinforcement').textContent = shearReinforcement;
+        document.getElementById('sectionType').textContent = sectionType;
+    }
+</script>
+	<div class="footer">
+        <p><i>Copyright @ Nabin Kumar Ijam</i><p>
+      </div>
+
+</body>
+</html>

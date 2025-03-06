@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORBEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+	h1{ background-color: blue;text-align: center;color:white; font-family: Arial;
+        font-size: 25px;}
+	a{background-color: CYAN;font-family: Arial;font-size:15px;color:black;}
+	h2{ background-color: green;text-align: center;color:white; font-family: Arial;
+        font-size: 20px;}
+
+
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="background-color:#E5E4E2;">
+    <h1 class="title">WELCOME TO MY PORTFOLIO</h1>
+    <a href="Home.html"><b>HOME</b></a>
+    <a href="My background.html"><b>MY BACKGROUND</b></a>
+    <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+    <a href="Others.html"><b>OTHERS</b></a>
+    <a href="Downloads.html"><b>DOWNLOADS</b></a>
+    <a href="images.html"><b>IMAGES</b></a>
+    <a href="Contacts.html"><b>CONTACTS</b></a>
+
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+
+  <div class="container">
+    <h2>AGE CALCULATOR</h2>
+	
+    <label for="startDate">Date of birth:</label>
+    <input type="date" id="startDate" name="startDate">
+    
+    <label for="finishDate">Current date:</label>
+    <input type="date" id="finishDate" name="finishDate">
+    
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateAge() {
+        const startDate = document.getElementById('startDate').value;
+        const finishDate = document.getElementById('finishDate').value;
+
+        if (!startDate || !finishDate) {
+            alert("Please enter both start and finish dates.");
+            return;
+        }
+
+        const start = new Date(startDate);
+        const finish = new Date(finishDate);
+
+        if (start > finish) {
+            alert("Start date must be before the finish date.");
+            return;
+        }
+
+        // Calculate the difference in milliseconds
+        const timeDifference = finish - start;
+
+        // Convert milliseconds to days
+        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        // Calculate years, months, and days
+        let years = finish.getFullYear() - start.getFullYear();
+        let months = finish.getMonth() - start.getMonth();
+        let days = finish.getDate() - start.getDate();
+
+        if (days < 0) {
+            months--;
+            days += new Date(finish.getFullYear(), finish.getMonth(), 0).getDate();
+        }
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        // Determine the output format
+        let output;
+        if (daysDifference < 30) {
+            output = `${daysDifference} day${daysDifference !== 1 ? 's' : ''}`;
+        } else if (years === 0) {
+            output = `${months} month${months !== 1 ? 's' : ''} and ${days} day${days !== 1 ? 's' : ''}`;
+        } else {
+            output = `${years} year${years !== 1 ? 's' : ''}, ${months} month${months !== 1 ? 's' : ''}, and ${days} day${days !== 1 ? 's' : ''}`;
+        }
+	
+
+        // Display the result
+        document.getElementById('result').innerHTML = `
+            <p>Age: <strong>${output}</strong></p>
+        `;
+    }
+</script>
+
+</body>
+</html>

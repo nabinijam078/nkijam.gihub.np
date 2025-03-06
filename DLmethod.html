@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+<STYLE>
+h1{ background-color: blue;text-align: center;color:white; font-family: Arial;
+        font-size: 25px;}
+a{background-color: CYAN;font-family: Arial;font-size:15px;color:black}
+</STYLE>
+<title>Duckworth-Lewis Calculator</title>
+</head>
+<body style="background-color:#E5E4E2;">
+	<h1 class="title">WELCOME TO MY PORTFOLIO </h1>
+      	<a href="Home.html"><b>HOME</b></a>
+      	<a href="My background.html"><b> MY BACKGROUND</b></a>
+      	<a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
+	<a href="Others.html"><b> OTHERS</b></a>
+      	<a href="Downloads.html"><b> DOWNLOADS</b></a>
+	<a href="images.html"><b> IMAGES</b></a>
+      	<a href="Contacts.html"><b> CONTACTS</b></a>
+      	<p> </p>
+
+
+<script language='JavaScript'>
+<!--
+
+var resources = Array();
+
+resources[50] = Array(100.0, 93.4, 85.1, 74.9, 62.7, 49.0, 34.9, 22.0, 11.9, 4.7, 0);
+resources[49] = Array(99.1, 92.6, 84.5, 74.4, 62.5, 48.9, 34.9, 22.0, 11.9, 4.7, 0);
+resources[48] = Array(98.1, 91.7, 83.8, 74.0, 62.2, 48.8, 34.9, 22.0, 11.9, 4.7, 0);
+resources[47] = Array(97.1, 90.9, 83.2, 73.5, 61.9, 48.6, 34.9, 22.0, 11.9, 4.7, 0);
+resources[46] = Array(96.1, 90.0, 82.5, 73.0, 61.6, 48.5, 34.8, 22.0, 11.9, 4.7, 0);
+resources[45] = Array(95.0, 89.1, 81.8, 72.5, 61.3, 48.4, 34.8, 22.0, 11.9, 4.7, 0);
+resources[44] = Array(93.9, 88.2, 81.0, 72.0, 61.0, 48.3, 34.8, 22.0, 11.9, 4.7, 0);
+resources[43] = Array(92.8, 87.3, 80.3, 71.4, 60.7, 48.1, 34.7, 22.0, 11.9, 4.7, 0);
+resources[42] = Array(91.7, 86.3, 79.5, 70.9, 60.3, 47.9, 34.7, 22.0, 11.9, 4.7, 0);
+resources[41] = Array(90.5, 85.3, 78.7, 70.3, 59.9, 47.8, 34.6, 22.0, 11.9, 4.7, 0);
+resources[40] = Array(89.3, 84.2, 77.8, 69.6, 59.5, 47.6, 34.6, 22.0, 11.9, 4.7, 0);
+resources[39] = Array(88.0, 83.1, 76.9, 69.0, 59.1, 47.4, 34.5, 22.0, 11.9, 4.7, 0);
+resources[38] = Array(86.7, 82.0, 76.0, 68.3, 58.7, 47.1, 34.5, 21.9, 11.9, 4.7, 0);
+resources[37] = Array(85.4, 80.9, 75.0, 67.6, 58.2, 46.9, 34.4, 21.9, 11.9, 4.7, 0);
+resources[36] = Array(84.1, 79.7, 74.1, 66.8, 57.7, 46.6, 34.3, 21.9, 11.9, 4.7, 0);
+resources[35] = Array(82.7, 78.5, 73.0, 66.0, 57.2, 46.4, 34.2, 21.9, 11.9, 4.7, 0);
+resources[34] = Array(81.3, 77.2, 72.0, 65.2, 56.6, 46.1, 34.1, 21.9, 11.9, 4.7, 0);
+resources[33] = Array(79.8, 75.9, 70.9, 64.4, 56.0, 45.8, 34.0, 21.9, 11.9, 4.7, 0);
+resources[32] = Array(78.3, 74.6, 69.7, 63.5, 55.4, 45.4, 33.9, 21.9, 11.9, 4.7, 0);
+resources[31] = Array(76.7, 73.2, 68.6, 62.5, 54.8, 45.1, 33.7, 21.9, 11.9, 4.7, 0);
+resources[30] = Array(75.1, 71.8, 67.3, 61.6, 54.1, 44.7, 33.6, 21.8, 11.9, 4.7, 0);
+resources[29] = Array(73.5, 70.3, 66.1, 60.5, 53.4, 44.2, 33.4, 21.8, 11.9, 4.7, 0);
+resources[28] = Array(71.8, 68.8, 64.8, 59.5, 52.6, 43.8, 33.2, 21.8, 11.9, 4.7, 0);
+resources[27] = Array(70.1, 67.2, 63.4, 58.4, 51.8, 43.3, 33.0, 21.7, 11.9, 4.7, 0);
+resources[26] = Array(68.3, 65.6, 62.0, 57.2, 50.9, 42.8, 32.8, 21.7, 11.9, 4.7, 0);
+resources[25] = Array(66.5, 63.9, 60.5, 56.0, 50.0, 42.2, 32.6, 21.6, 11.9, 4.7, 0);
+resources[24] = Array(64.6, 62.2, 59.0, 54.7, 49.0, 41.6, 32.3, 21.6, 11.9, 4.7, 0);
+resources[23] = Array(62.7, 60.4, 57.4, 53.4, 48.0, 40.9, 32.0, 21.5, 11.9, 4.7, 0);
+resources[22] = Array(60.7, 58.6, 55.8, 52.0, 47.0, 40.2, 31.6, 21.4, 11.9, 4.7, 0);
+resources[21] = Array(58.7, 56.7, 54.1, 50.6, 45.8, 39.4, 31.2, 21.3, 11.9, 4.7, 0);
+resources[20] = Array(56.6, 54.8, 52.4, 49.1, 44.6, 38.6, 30.8, 21.2, 11.9, 4.7, 0);
+resources[19] = Array(54.4, 52.8, 50.5, 47.5, 43.4, 37.7, 30.3, 21.1, 11.9, 4.7, 0);
+resources[18] = Array(52.2, 50.7, 48.6, 45.9, 42.0, 36.8, 29.8, 20.9, 11.9, 4.7, 0);
+resources[17] = Array(49.9, 48.5, 46.7, 44.1, 40.6, 35.8, 29.2, 20.7, 11.9, 4.7, 0);
+resources[16] = Array(47.6, 46.3, 44.7, 42.3, 39.1, 34.7, 28.5, 20.5, 11.8, 4.7, 0);
+resources[15] = Array(45.2, 44.1, 42.6, 40.5, 37.6, 33.5, 27.8, 20.2, 11.8, 4.7, 0);
+resources[14] = Array(42.7, 41.7, 40.4, 38.5, 35.9, 32.2, 27.0, 19.9, 11.8, 4.7, 0);
+resources[13] = Array(40.2, 39.3, 38.1, 36.5, 34.2, 30.8, 26.1, 19.5, 11.7, 4.7, 0);
+resources[12] = Array(37.6, 36.8, 35.8, 34.3, 32.3, 29.4, 25.1, 19.0, 11.6, 4.7, 0);
+resources[11] = Array(34.9, 34.2, 33.4, 32.1, 30.4, 27.8, 24.0, 18.5, 11.5, 4.7, 0);
+resources[10] = Array(32.1, 31.6, 30.8, 29.8, 28.3, 26.1, 22.8, 17.9, 11.4, 4.7, 0);
+resources[9]  = Array(29.3, 28.9, 28.2, 27.4, 26.1, 24.2, 21.4, 17.1, 11.2, 4.7, 0);
+resources[8]  = Array(26.4, 26.0, 25.5, 24.8, 23.8, 22.3, 19.9, 16.2, 10.9, 4.7, 0);
+resources[7]  = Array(23.4, 23.1, 22.7, 22.2, 21.4, 20.1, 18.2, 15.2, 10.5, 4.7, 0);
+resources[6]  = Array(20.3, 20.1, 19.8, 19.4, 18.8, 17.8, 16.4, 13.9, 10.1, 4.6, 0);
+resources[5]  = Array(17.2, 17.0, 16.8, 16.5, 16.1, 15.4, 14.3, 12.5, 9.4, 4.6, 0);
+resources[4]  = Array(13.9, 13.8, 13.7, 13.5, 13.2, 12.7, 12.0, 10.7, 8.4, 4.5, 0);
+resources[3]  = Array(10.6, 10.5, 10.4, 10.3, 10.2, 9.9, 9.5, 8.7, 7.2, 4.2, 0);
+resources[2]  = Array(7.2, 7.1, 7.1, 7.0, 7.0, 6.8, 6.6, 6.2, 5.5, 3.7, 0);
+resources[1]  = Array(3.6, 3.6, 3.6, 3.6, 3.6, 3.5, 3.5, 3.4, 3.2, 2.5, 0);
+resources[0]  = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+var original_resources = Array();
+for (i=0; i<=50; i++)
+{
+  original_resources[i] = Array();
+  for (j=0; j<=10; j++)
+  {
+    original_resources[i][j] = resources[i][j];
+  }
+}
+
+total_overs=50;
+
+function runs_needed(overs, balls, wickets, target)
+{
+  if (overs >= total_overs) {return target;}
+
+  x1 = target-target*resources[total_overs-overs][wickets]/100;
+  if (balls == 0) {return x1;}
+
+  x2 = target-target*resources[total_overs-overs-1][wickets]/100;
+  x3 = x1 + (x2-x1)*balls/6;
+
+  return (x3);
+}
+
+function update_resources(max_overs)
+{
+  for (i=0; i<=max_overs; i++)
+  {
+    k = i/max_overs*50;
+    l = Math.floor(k);
+    m = k-l;
+
+    for (j=0; j<=10; j++)
+    {
+      o               = original_resources[l][j];
+      if (l<max_overs) {p = original_resources[l+1][j];}
+      else {p = original_resources[l][j];}
+      resources[i][j] = (1-m)*o+m*p;
+    }
+  }
+total_overs = max_overs;
+}
+
+function update_team_a()
+{
+  max_overs = Math.floor(update.max_overs.value);
+  if (max_overs > 50) {max_overs = 50;}
+  if (max_overs < 10 | max_overs == '') {max_overs = 10;}
+  update.max_overs.value = max_overs;
+
+  if (max_overs != total_overs) {update_resources(max_overs);}
+
+  runs_a = update.team_a_runs.value;
+  wkts_a = update.team_a_wkts.value;
+
+  if (runs_a == '') { runs_a = 0;}
+  if (wkts_a < 0 | wkts_a > 10 | wkts_a == '') {wkts_a = 0; update.team_a_wkts.value=0}
+
+  team_a_total.innerHTML = runs_a;
+  team_a_wickets.innerHTML = wkts_a;
+
+  overs  = update.team_b_overs.value;
+  wkts_b = update.team_b_wkts.value;
+
+  if (overs == '') {overs = '0';}
+
+  overs_b = Math.floor(overs);
+  balls_b = Math.floor((overs-overs_b)*10+.5);
+
+  if (balls_b > 5) {balls_b -= 6; overs_b ++;}
+
+  if (overs_b > total_overs) {overs_b = total_overs;balls_b = 0;}
+  if (overs_b < 0) {overs_b = 0;balls_b = 0;}
+
+  overs = overs_b + balls_b/10;
+  update.team_b_overs.value = overs_b +"."+ balls_b;;
+
+  if (overs_b == '') {overs_b = 0;}
+  if (wkts_b < 0 | wkts_b > 10 | wkts_b == '') {wkts_b = 0;}
+
+  team_b_overs.innerHTML = overs_b+"."+balls_b;
+  team_b_wickets.innerHTML  = wkts_b;
+
+  target_score = runs_needed(overs_b, balls_b, wkts_b, runs_a);
+  target_score = Math.floor(target_score)+1;
+  team_b_target.innerHTML = target_score;
+}
+
+function show_calculator()
+{
+  hide_help_1();
+  hide_help_2();
+
+  calculate.team_a_runs_2.value = update.team_a_runs.value;
+  calculate.team_a_wkts_2.value = update.team_a_wkts.value;
+  calculate.max_overs_2.value = update.max_overs.value;
+
+  predictor.style.left = -1000;
+  calculator.style.left = 20;
+
+  update_team_a();
+  team_a_total_2.innerHTML = runs_a;
+  team_a_wickets_2.innerHTML = wkts_a;
+}
+
+function show_predictor()
+{
+  hide_help_1();
+  hide_help_2();
+
+  update.team_a_runs.value = calculate.team_a_runs_2.value;
+  update.team_a_wkts.value = calculate.team_a_wkts_2.value;
+  update.max_overs.value = calculate.max_overs_2.value;
+
+  predictor.style.left = 20;
+  calculator.style.left = -1000;
+}
+
+var bowling_points = Array();
+
+function calculate_points()
+{
+  bowling_points[1]  = 5;
+  bowling_points[2]  = 4;
+  bowling_points[3]  = 3;
+  bowling_points[4]  = 2;
+  bowling_points[5]  = 2;
+  bowling_points[6]  = 1;
+  bowling_points[7]  = 1;
+  bowling_points[8]  = 0;
+  bowling_points[9]  = 0;
+  bowling_points[10] = 0;
+
+  runs_a = calculate.team_a_runs_2.value;
+  runs_a = Math.floor(runs_a);
+  calculate.team_a_runs_2.value = runs_a;
+  team_a_total_2.innerHTML = runs_a;
+
+  wkts_a = calculate.team_a_wkts_2.value;
+  wkts_a = Math.floor(wkts_a);
+  calculate.team_a_wkts_2.value = wkts_a;
+  team_a_wickets_2.innerHTML = wkts_a;
+
+  max_overs = Math.floor(calculate.max_overs_2.value);
+  if (max_overs > 50) {max_overs = 50;}
+  if (max_overs < 10 | max_overs == '') {max_overs = 10;}
+  calculate.max_overs_2.value = max_overs;
+
+  if (max_overs != total_overs) {update_resources(max_overs);}
+
+  runs_b = calculate.team_b_runs_2.value;
+  team_b_total_2.innerHTML = runs_b;
+
+  wkts_b = calculate.team_b_wkts_2.value;
+  if (wkts_b > 10) {wkts_b = 10;}
+  if (wkts_b <= 0 | wkts_b == '') {wkts_b = 0;}
+  calculate.team_b_wkts_2.value = wkts_b;
+  team_b_wickets_2.innerHTML = wkts_b;
+  
+  overs = calculate.team_b_overs_2.value;
+  if (overs > max_overs) {overs = max_overs;}
+  if (overs < 0 | overs == '') {overs = 0;}
+  calculate.team_b_overs_2.value = overs;
+
+  overs_b = Math.floor(overs);
+  balls_b = Math.floor((overs-overs_b)*10+.5);
+  if (balls_b > 5) {balls_b -= 6; overs_b ++;}
+  overs = overs_b + '.'+balls_b;
+  
+
+  target_b = Math.floor(runs_needed(overs_b, balls_b, wkts_b, runs_a));
+
+  if (target_b < runs_b) {margin = runs_b - target_b; result_str = 'TEAM B WINS BY '+margin+' RUNS'; res = 'B';}
+  if (target_b > runs_b) {margin = target_b - runs_b; result_str = 'TEAM A WINS BY '+margin+' RUNS'; res = 'A';}
+  if (target_b == runs_b) {result_str = 'THE MATCH IS A TIE'; res = 'T';}
+
+  result.innerHTML = '<b>'+result_str+'</b>';
+
+  points_a = 0;
+  points_b = 0;
+
+  if (res == 'A')
+  {
+    points_a = 10;
+
+    percentage_of_score = runs_b / target_b;
+
+    if (percentage_of_score >= 0.5) {points_b = 1;}
+    if (percentage_of_score >= 0.6) {points_b = 2;}
+    if (percentage_of_score >= 0.7) {points_b = 3;}
+    if (percentage_of_score >= 0.8) {points_b = 4;}
+    if (percentage_of_score >= 0.9) {points_b = 5;}
+
+    percentage_of_score = Math.floor(percentage_of_score * 100);
+    points_b += " ("+percentage_of_score+"% of winning target)";
+  }
+
+  if (res == 'B')
+  {
+    points_b = 10;
+    wkts_needed = 11;
+
+    for (i=0; i<=10; i++)
+    {
+      new_target = Math.floor(runs_needed(overs_b, balls_b, i, runs_a));
+      if (new_target >= runs_b) {wkts_needed = i; i=11;}
+    }
+
+    wkts_to_take = wkts_needed - wkts_b;
+    points_a = bowling_points[wkts_to_take];
+
+    points_a += ' (Wkts needed to win = '+wkts_needed+')';
+  }
+
+  if (res == 'T')
+  {
+    points_a = 7;
+    points_b = 7;
+  }
+
+  team_a_points.innerHTML = '<b>'+points_a+'</b>';
+  team_b_points.innerHTML = '<b>'+points_b+'</b>';
+}
+
+help_1_showing = false;
+help_2_showing = false;
+
+function show_help_1()
+{
+  if (help_1_showing) {hide_help_1();}
+  else {help_window_1.style.left = 10; help_1_showing = true;}
+}
+
+function show_help_2()
+{
+  if (help_2_showing) {hide_help_2();}
+  else {help_window_2.style.left = 10; help_2_showing = true;}
+}
+
+function hide_help_1()
+{
+  help_window_1.style.left = -1000;
+  help_1_showing = false;
+}
+
+function hide_help_2()
+{
+  help_window_2.style.left = -1000;
+  help_2_showing = false;
+}
+
+function change_balls(x)
+{
+  overs  = update.team_b_overs.value;
+
+  overs_b = Math.floor(overs);
+  balls_b = Math.floor((overs-overs_b)*10+.5);
+
+  // alert(overs_b+"."+balls_b+" : "+x);
+
+  if (overs_b == total_overs && x > 0) {return;}
+
+  balls_b += x;
+
+  if (balls_b < 0)
+  {
+    balls_b = 5;
+    overs_b --;
+    if (overs_b < 0) {overs_b == 0; balls_b = 0;}
+  }
+
+  if (balls_b > 5) {balls_b -= 6; overs_b ++;}
+
+  if (overs_b > total_overs) {overs_b = total_overs; balls_b = 0;}
+
+  if (overs_b < 0) {overs_b = 0;balls_b = 0;}
+
+  overs = overs_b + balls_b/10;
+  update.team_b_overs.value = overs_b +"."+ balls_b;;
+
+  update_team_a();
+
+}
+
+-->
+</script>
+
+<style>
+.scoreboard {background-color: #87CEEB;color: black;font-family: Arial, sans-serif;border: 2px #dadada double;text-align: center;}
+.score {font-size: 15px;}
+.text {font-size: 15px;}
+.myhead {font-size: 15px; color: #ffffff; padding:8px; margin:18px; background-color: #000000;}
+.sm_text {font-size: 14px;}
+.target {font-size: 15px;}
+.update {font-size: 16px; border: 1px solid #888888; padding: 12px;}
+.sm_text a:link, .sm_text a:visited,
+.up_down a:link, .up_down a:visited {color: black; text-decoration: none;}
+.sm_text a:hover,
+.up_down a:hover {color: #ffff00; text-decoration: none;}
+.input_box {background-color: #c8c8c8; font-family: Arial, sans-serif; font-size: 16px; position: relative; top: 0px; left: 0px; width: 76px; height: 24px; padding-left: 4px; border: 1px #ffffff solid;}
+#predictor {position: absolute; top:150px; left: 20px;}
+#calculator {position: absolute; top:150px; left: -1000px;}
+#help_window_1, #help_window_2 {position: absolute; top: 10px; left: -1000px; border: 1px solid #000000;}
+
+#help_window_1 {left: -1000px; width: 704px;}
+#help_window_2 {left: -1000px; width: 704px;}
+
+
+
+.up_down {font-family: sans-serif;font-size:15px;border: 1px solid #555555; height: 24px;}
+
+
+</style>
+
+<div id='predictor'>
+<table class='scoreboard' cellpadding=4 cellspacing=4 border=0>
+  <tr>
+    <td colspan=6>
+      <br /><span class='myhead'>DUCKWORTH LEWIS TARGET CALCULATOR</span><br /><br />
+    </td>
+  </tr>
+  <tr>
+    <td class='text' valign='middle' width='120'>TEAM A SCORED:</td>
+    <td class='score' id='team_a_total' name='team_a_total' width='170' colspan=2>0</td>
+    <td class='text' valign='middle' width='120'>FOR THE LOSS OF:</td>
+    <td class='score' id='team_a_wickets' name='team_a_wickets' width='100'>0</td>
+    <td class='text' valign='middle' width='120'>WICKETS</td>
+  </tr>
+  <tr>
+    <td class='text' valign='middle' rowspan=2>AFTER:</td>
+    <td class='up_down'><a href='JavaScript:change_balls(1)'>+</a></td>
+    <td class='score' id='team_b_overs' name='team_b_overs' width='170' rowspan=2>0.0</td>
+    <td class='text' valign='middle' width='120' rowspan=2>FOR THE LOSS OF:</td>
+    <td class='score' id='team_b_wickets' name='team_b_wickets' width='100' rowspan=2>0</td>
+    <td class='text' valign='middle' width='120' rowspan=2>WICKETS</td>
+  </tr>
+  <tr>
+    <td class='up_down'><a href='JavaScript:change_balls(-1)'>-</a></td>
+  </tr>
+  <tr>
+    <td colspan=3 class='text' valign='middle'>THE TARGET<br />FOR TEAM B IS:</td>
+    <td colspan=2 class='target' id='team_b_target' name='team_b_target'>0</td>
+    <td class='text' valign='middle'>RUNS</td>
+  </tr>
+  <tr>
+    <td colspan=6><center>
+
+      <form name='update'>
+
+      <table class='scoreboard' border=0 cellpadding=4 cellspacing=4>
+        <tr>
+          <td class='sm_text' valign='middle'>TEAM A RUNS</td>
+          <td valign='middle'><input name='team_a_runs' class='input_box' type='text' value=0></td>
+          <td class='sm_text' valign='middle'>FOR</td>
+          <td valign='middle'><input name='team_a_wkts' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>WICKETS</td>
+        </tr>
+        <tr>
+          <td class='sm_text' valign='middle'>TEAM B OVERS</td>
+          <td valign='middle'><input name='team_b_overs' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>FOR</td>
+          <td valign='middle'><input name='team_b_wkts' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>WICKETS</td>
+        </tr>
+        <tr>
+          <td class='sm_text' valign='middle'>MAXIMUM OVERS</td>
+          <td valign='middle'><input name='max_overs' class='input_box' type='text' value=50></td>
+          <td>&nbsp;</td>
+          <td class='sm_text' colspan=2><a href='JavaScript:update_team_a()'>UPDATE</a></td>
+        </tr>
+      </table>
+
+      </form>
+
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan=4 class='sm_text'><a href='JavaScript:show_calculator()'>DOCKWORTH LEWIS POINTS CALCULATOR</a></td>
+    
+  </tr>
+  
+<tr>
+<td class='sm_text'> <i>Copyright @ Nabin Kumar Ijam</i></td>
+</tr>  
+  
+     </td>
+  </tr>
+</table>
+
+<div id='help_window_1'>
+<table class='help' cellpadding=16 width=100%>
+  <tr><td>
+
+<span class='myhead'>Duckworth Lewis Target Calculator</span><br /><br />
+To use the score calculator follow these steps:<br /><br />
+1. Enter the score and wickets for team A (Team A is the team batting first)<br /><br />
+2. Enter the number of overs and balls Team B has faced (e.g. 34.3)<br /><br />
+3. Enter the number of wickets Team B has lost so far<br /><br />
+4. Enter the maximum number of overs each team can face<br /><br />
+5. Click on 'UPDATE' for the winning target for Team B to be displayed.<br /><br />
+6. You can use the +/- to increase/decrease the number of balls bowled one at a time.<br /><br />
+<b>NOTE:</b> The target is the winning score.  1 less will result in a tie,<br /> 2 less in a loss.<br /><br />
+To calculate the number of points each team scores click on<br />'SHOW DOCKWORTH LEWIS POINTS CALCULATOR' at the bottom.<br /><br />
+
+
+  </td></tr>
+</table>
+</div>
+
+</div>
+
+<div id='calculator'>
+<table class='scoreboard' border='0'>
+  <tr>
+    <td colspan=5>
+      <br /><span class='myhead'>DOCKWORTH LEWIS POINT CALCULATOR</span><br /><br />
+    </td>
+  </tr>
+  <tr>
+    <td class='text' valign='middle' width='120'>TEAM A SCORED:</td>
+    <td class='score' id='team_a_total_2' name='team_a_total' width='170'>0</td>
+    <td class='text' valign='middle' width='120'>FOR THE LOSS OF</td>
+    <td class='score' id='team_a_wickets_2' name='team_a_wickets' width='100'>0</td>
+    <td class='text' valign='middle' width='120'>WICKETS</td>
+  </tr>
+  <tr>
+    <td class='text' valign='middle' width='120'>TEAM B SCORED:</td>
+    <td class='score' id='team_b_total_2' name='team_a_total' width='170'>&nbsp;</td>
+    <td class='text' valign='middle' width='120'>FOR THE LOSS OF</td>
+    <td class='score' id='team_b_wickets_2' name='team_a_wickets' width='100'>&nbsp;</td>
+    <td class='text' valign='middle' width='120'>WICKETS</td>
+  </tr>
+  <tr>
+    <td colspan=5><br /><center>
+
+      <form name='calculate'>
+
+      <table class='scoreboard' border=0 cellpadding=4 cellspacing=4>
+        <tr>
+          <td class='sm_text' valign='middle'>TEAM A SCORED</td>
+          <td valign='middle'><input name='team_a_runs_2' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>FOR</td>
+          <td valign='middle'><input name='team_a_wkts_2' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>WICKETS</td>
+        </tr>
+        <tr>
+          <td class='sm_text' valign='middle'>TEAM B SCORED</td>
+          <td valign='middle'><input name='team_b_runs_2' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>FOR</td>
+          <td valign='middle'><input name='team_b_wkts_2' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>WICKETS</td>
+        </tr>
+        <tr>
+          <td class='sm_text' valign='middle'>OVERS FACED</td>
+          <td valign='middle'><input name='team_b_overs_2' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>MAXIMUM</td>
+          <td valign='middle'><input name='max_overs_2' class='input_box' type='text' value='0'></td>
+          <td class='sm_text' valign='middle'>OVERS</td>
+        </tr>
+        <tr>
+          <td class='sm_text' colspan=5><a href='JavaScript:calculate_points()'>CALCULATE</a></td>
+        </tr>
+      </table>
+
+      </form>
+
+    </td>
+  </tr>
+  <tr>
+    <td colspan=5><center>
+
+    <table border=0 bgcolor='#DDDDDD' cellpadding=8>
+      <tr>
+        <td class='sm_text'>RESULT :</td>
+        <td id='result' name='result' class='sm_text' width=250></td>
+      </tr>
+      <tr>
+        <td class='sm_text'>TEAM A POINTS :</td>
+        <td id='team_a_points' name='team_a_points' class='sm_text' width=250></td>
+      </tr>
+      <tr>
+        <td class='sm_text'>TEAM B POINTS :</td>
+        <td id='team_b_points' name='team_b_points' class='sm_text' width=250></td>
+      </tr>
+
+    </table><br />
+
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan=3 class='sm_text'><a href='JavaScript:show_predictor()'>SHOW DOCKWORTH LEWIS TARGET CALCULATOR</a></td>
+    
+  </tr>
+ 
+<tr>
+<td class='sm_text'><i> Copyright @ Nabin Kumar Ijam</i></td>
+</tr>  
+  
+</table>
+
+<div id='help_window_2'>
+<table class='help' cellpadding=16 width=100%>
+  <tr><td>
+
+<span class='myhead'>DOCKWORTH LEWIS POINT CALCULATOR</span><br /><br />
+To use the points calculator follow these steps:<br /><br />
+1. Enter the score and wickets for team A <br />(Team A is the team batting first)<br /><br />
+2. Enter the score Team B had and the wickets lost at the game interruption<br /><br />
+3. Enter the number of overs and balls Team B has faced (e.g. 34.3)<br /><br />
+4. Enter the maximum number of overs for the innings<br /><br />
+5. Click on 'CALCULATE' to display the result and the number of points each team scores.<br /><br />
+<b>NOTE:</b> Details of the number of wickets Team A needed to take to win or the percentage of Team A's total that had been scored by team B are shown for the losing team.<br /><br />
+<a href='JavaScript:hide_help_2()'>HIDE HELP</a><br /><br />
+
+  </td></tr>
+</table>
+
+</div>
+<script language='JavaScript'>
+ // show_calculator(); // show_help_2(); 
+</script>
+</body>
+</html>
